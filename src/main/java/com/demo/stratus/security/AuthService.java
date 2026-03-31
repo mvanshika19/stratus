@@ -47,7 +47,7 @@ public class AuthService {
         userRepository.save(user);
         log.info("User registered successfully: {}", request.getEmail());
 
-        emailTemplateService.sendWelcomeEmail(request.getEmail(), request.getFirstName());
+       emailTemplateService.sendWelcomeEmail(request.getEmail(), request.getFirstName());
 
         String accessToken = jwtService.generateAccessToken(user.getEmail());
         String refreshToken = jwtService.generateRefreshToken(user.getEmail());
