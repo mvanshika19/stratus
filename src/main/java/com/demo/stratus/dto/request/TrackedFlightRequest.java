@@ -1,8 +1,10 @@
 package com.demo.stratus.dto.request;
 
-import jakarta.validation.constraints.*;
+import com.demo.stratus.enums.CabinClass;
+import com.demo.stratus.enums.SeatType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-import java.time.LocalDateTime;
 
 @Data
 public class TrackedFlightRequest {
@@ -10,16 +12,13 @@ public class TrackedFlightRequest {
     @NotBlank(message = "Flight number is required")
     private String flightNumber;
 
-    @NotBlank(message = "Origin IATA code is required")
-    @Size(min = 3, max = 3, message = "Origin IATA must be 3 characters")
-    @Pattern(regexp = "[A-Z]{3}", message = "Origin IATA must be 3 uppercase letters")
-    private String originIata;
+    @Size(max = 10, message = "Seat number must not exceed 10 characters")
+    private String seatNumber;
 
-    @NotBlank(message = "Destination IATA code is required")
-    @Size(min = 3, max = 3, message = "Destination IATA must be 3 characters")
-    @Pattern(regexp = "[A-Z]{3}", message = "Destination IATA must be 3 uppercase letters")
-    private String destinationIata;
+    private SeatType seatType;
 
-    private LocalDateTime scheduledDeparture;
-    private LocalDateTime scheduledArrival;
+    private CabinClass cabinClass;
+
+    @Size(max = 20, message = "Reference number must not exceed 20 characters")
+    private String referenceNumber;
 }

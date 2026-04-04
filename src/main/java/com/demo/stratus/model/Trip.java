@@ -5,6 +5,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.demo.stratus.enums.TripPurpose;
+
 @Entity
 @Table(name = "trips")
 @Getter
@@ -23,6 +25,13 @@ public class Trip {
 
     @Column(nullable = false)
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TripPurpose purpose;
+
+    @Column(name = "accompanied_members")
+    private Integer accompaniedMembers;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

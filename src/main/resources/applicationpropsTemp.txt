@@ -1,0 +1,41 @@
+spring.application.name=startus
+
+# JWT Configuration
+app.jwt.secret=add_yours
+app.jwt.access-token-expiry=900000
+app.jwt.refresh-token-expiry=604800000
+
+# Disable AWS auto-configuration until SQS/SNS is ready
+spring.autoconfigure.exclude=io.awspring.cloud.autoconfigure.sqs.SqsAutoConfiguration,io.awspring.cloud.autoconfigure.sns.SnsAutoConfiguration
+
+# AWS Region
+spring.cloud.aws.region.static=ca-central-1
+spring.cloud.aws.credentials.access-key= add_yours
+spring.cloud.aws.credentials.secret-key= add_yours
+# AWS SES SMTP Configuration
+spring.mail.host=email-smtp.ca-central-1.amazonaws.com
+spring.mail.port=587
+spring.mail.username=add_yours
+spring.mail.password=add_yours
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+aws.ses.sender=add_yours
+
+# Database Configuration
+spring.datasource.url=add_yours
+spring.datasource.username=add_yours
+spring.datasource.password=add_yours
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA / Hibernate
+spring.jpa.open-in-view=false
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# AviationStack API
+aviationstack.api.key=add_yours
+aviationstack.api.url=http://api.aviationstack.com/v1
+
+logging.level.com.demo.stratus=DEBUG

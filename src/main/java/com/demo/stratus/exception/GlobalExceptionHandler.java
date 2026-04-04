@@ -58,4 +58,39 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "An unexpected error occurred"));
     }
+
+    @ExceptionHandler(TripNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleTripNotFound(TripNotFoundException ex) {
+        log.warn("[{}] Trip not found: {}", LocalDateTime.now(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(UnauthorizedAccessException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorizedAccess(UnauthorizedAccessException ex) {
+        log.warn("[{}] Unauthorized access: {}", LocalDateTime.now(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(new ErrorResponse(HttpStatus.FORBIDDEN.value(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(DuplicateFlightException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateFlight(DuplicateFlightException ex) {
+        log.warn("[{}] Duplicate flight: {}", LocalDateTime.now(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(FlightNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleFlightNotFound(FlightNotFoundException ex) {
+        log.warn("[{}] Flight not found: {}", LocalDateTime.now(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(FlightNotVerifiedException.class)
+    public ResponseEntity<ErrorResponse> handleFlightNotVerified(FlightNotVerifiedException ex) {
+        log.warn("[{}] Flight not verified: {}", LocalDateTime.now(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+    }
 }
